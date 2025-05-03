@@ -72,15 +72,53 @@ By leveraging DAGs effectively, Airflow users can design scalable, maintainable,
 
 **Core Idea**: Operators determine what a task does. Airflow provides pre-built operators for common actions (e.g., `PythonOperator`, `BashOperator`, `EmailOperator`).
 
-**Example**: Use the `BashOperator` to run a shell script:
+# Operators in Apache Airflow
 
-```python
-from airflow.operators.bash import BashOperator
+## Core Idea
 
-process_data = BashOperator(
-    task_id="process_data",
-    bash_command="python /scripts/transform.py"
-)
+**Operators** define the specific action that a task will perform in a DAG. They are the building blocks of task logic and encapsulate the work that needs to be done, such as running a script, transferring data, or executing a SQL command.
+
+Airflow provides a rich set of **pre-built operators** to support common use cases. These operators abstract away low-level code, allowing developers to define tasks using high-level interfaces.
+
+## Common Operator Types
+
+- **PythonOperator**: Executes a Python function.
+- **BashOperator**: Runs a Bash command or script.
+- **EmailOperator**: Sends email alerts or notifications.
+- **DummyOperator**: Used as a placeholder or for logical structuring in the DAG.
+- **BranchPythonOperator**: Enables branching logic based on conditional outcomes.
+- **Sensor Operators**: Wait for a condition to be met before continuing, e.g., FileSensor, S3KeySensor.
+- **SQL Operators**: Run SQL queries against databases (e.g., PostgresOperator, MySqlOperator).
+- **DockerOperator**: Runs a task inside a Docker container.
+- **KubernetesPodOperator**: Launches tasks in Kubernetes pods.
+
+## Operator Customization
+
+Operators are highly configurable. You can set:
+- Task retries and retry delay
+- Timeout and SLA (Service Level Agreement)
+- Email or callback alerts on failure
+- Template fields for dynamic values using Jinja
+
+## Reusability and Modularity
+
+Operators promote code reuse. Instead of writing the same logic in multiple places, you can define a custom operator once and use it across many DAGs. This keeps workflows maintainable and modular.
+
+## Extending Operators
+
+Airflow also supports the creation of **custom operators** by subclassing the base operator classes. This is useful when your task logic is not covered by built-in operators or requires integration with specific systems.
+
+## Best Practices
+
+- Choose the simplest operator that fits your use case.
+- Avoid placing business logic directly in the operator definition; delegate to external functions or scripts.
+- Use sensors instead of manual polling logic.
+- Group related tasks logically, even if they use different operators, for better DAG readability.
+
+---
+
+Operators allow you to encapsulate task behavior cleanly and consistently, making Airflow workflows powerful and easy to manage.
+
 ```
 
 ## Tasks
