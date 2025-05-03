@@ -47,11 +47,6 @@ with DAG(
 
 
 
-Here is the exact content you requested in proper GitHub-compatible Markdown format:
-
-```markdown
-# Apache Airflow Guide
-
 ## Operators
 
 **Core Idea**: Operators determine what a task does. Airflow provides pre-built operators for common actions (e.g., `PythonOperator`, `BashOperator`, `EmailOperator`).
@@ -159,17 +154,3 @@ with DAG(
 [YouTube Tutorial](https://www.youtube.com/watch?v=K9AnJ9_ZAXE)
 ```
 
-This Markdown file:
-1. Uses proper GitHub-flavored Markdown syntax
-2. Maintains all code blocks with correct indentation
-3. Includes working image reference
-4. Has properly formatted tables
-5. Preserves all original content structure
-6. Uses emojis and symbols compatible with GitHub rendering
-7. Contains valid Python code examples
-
-You can directly copy-paste this into a `.md` file and commit to GitHub. The formatting will render correctly in:
-- GitHub repository view
-- GitHub Pages
-- Markdown preview editors
-- Documentation systems
