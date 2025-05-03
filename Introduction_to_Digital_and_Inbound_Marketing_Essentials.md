@@ -175,37 +175,66 @@ Airflow's modular architecture includes:
 
 ## Challenge: Create API Data Pipeline DAG
 
-**Requirements**:
-```python
-from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
-from airflow.operators.email import EmailOperator
-from datetime import datetime
+# Challenge: Create API Data Pipeline DAG in Apache Airflow
 
-def fetch_data():
-    print("Fetching data from API...")
+## Objective
 
-def process_data():
-    print("Processing data...")
+Design a DAG that periodically fetches data from an external API, processes it, and stores it in a destination such as a database, cloud storage, or a data warehouse.
 
-with DAG(
-    "api_data_pipeline",
-    start_date=datetime(2024, 1, 1),
-    schedule_interval="@daily",
-    default_args={"retries": 2}
-) as dag:
-    fetch = PythonOperator(task_id="fetch_data", python_callable=fetch_data)
-    process = PythonOperator(task_id="process_data", python_callable=process_data)
-    upload = BashOperator(task_id="upload_to_s3", bash_command="aws s3 cp /data/output.csv s3://my-bucket/")
-    notify = EmailOperator(
-        task_id="send_email",
-        to="team@example.com",
-        subject="Pipeline Status",
-        html_content="Success!"
-    )
+## Pipeline Stages
 
-    fetch >> process >> upload >> notify
+1. **Extract**
+   - Triggered at scheduled intervals (e.g., hourly, daily).
+   - Calls an external REST API to retrieve data.
+   - Handles authentication, pagination, and rate limits if needed.
+
+2. **Transform**
+   - Parses and cleans raw API response (e.g., JSON to structured format).
+   - Applies any necessary data transformation or enrichment (e.g., converting timestamps, normalizing fields).
+
+3. **Load**
+   - Writes the processed data to the target system, such as:
+     - PostgreSQL/MySQL database
+     - Amazon S3 or Google Cloud Storage
+     - BigQuery, Snowflake, or Redshift
+
+4. **Validation**
+   - Performs basic checks to ensure data was loaded successfully.
+   - Optionally sends notifications (e.g., Slack or Email) upon success or failure.
+
+## Operators to Use
+
+- **HTTP Sensor or Custom Sensor**: Waits for API availability (optional).
+- **PythonOperator**: Used for data extraction, transformation, and loading.
+- **BranchPythonOperator**: Implements conditional logic (e.g., skip if API has no new data).
+- **DummyOperator**: Marks pipeline boundaries (start, end).
+- **EmailOperator or Slack Hook**: Sends alerts for pipeline success or failure.
+
+## Key Considerations
+
+- **Error Handling**: Implement retries and alerts for failed API calls or transformations.
+- **Idempotency**: Ensure the pipeline doesn't duplicate data if re-run.
+- **Logging and Monitoring**: Add detailed logging for troubleshooting and auditing.
+- **Templating and Parameters**: Use Airflow macros to pass dates or runtime variables dynamically into API requests.
+- **Environment Variables**: Store API keys and secrets securely using Airflow’s Variables or Connections.
+
+## Scheduling Strategy
+
+- Choose an interval aligned with the API’s update frequency.
+- Use `catchup=False` if you don’t want past runs to backfill automatically.
+- Optionally implement a DAG-level SLA to monitor pipeline performance.
+
+## Extension Ideas
+
+- Chain multiple API calls together (e.g., fetch metadata and then detailed records).
+- Parallelize requests to speed up data collection.
+- Archive raw API responses for debugging or audit purposes.
+- Use TaskFlow API for cleaner, function-based DAGs.
+
+---
+
+This challenge tests your ability to integrate external systems into Airflow, structure robust data workflows, and apply core Airflow concepts effectively.
+
 ```
 
 🔗 **Resources**:  
