@@ -64,8 +64,60 @@ This structure ensures that tasks execute in a valid, logical sequence, preventi
 
 ---
 
-By leveraging DAGs effectively, Airflow users can design scalable, maintainable, and robust data workflows tailored to their operational needs.
+Analysis
 
+python
+Always show details
+
+
+# Scheduling with Cron in Apache Airflow
+
+## Overview
+
+Apache Airflow uses cron expressions to schedule DAG runs. This allows workflows to be triggered automatically at specified intervals, providing flexibility and precision in timing.
+
+## Cron Expression Format
+
+A cron expression has five fields, each separated by a space:
+
+│ │ │ │ │
+│ │ │ │ └── Day of the week (0 - 6) (Sunday=0)
+│ │ │ └──── Month (1 - 12)
+│ │ └────── Day of the month (1 - 31)
+│ └──────── Hour (0 - 23)
+└────────── Minute (0 - 59)
+
+markdown
+Always show details
+
+Copy
+
+## Common Examples
+
+- `@hourly` – Runs once every hour
+- `@daily` – Runs once a day at midnight (00:00)
+- `0 6 * * *` – Runs daily at 6:00 AM
+- `30 2 * * 1-5` – Runs at 2:30 AM, Monday through Friday
+- `0 0 1 * *` – Runs on the 1st of every month at midnight
+
+## Preset Options
+
+Airflow supports special preset strings as shortcuts:
+
+- `@once` – Run once and never again
+- `@hourly` – Every hour
+- `@daily` or `@midnight` – Once a day at 00:00
+- `@weekly` – Once a week at midnight on Sunday
+- `@monthly` – Once a month on the first day at midnight
+- `@yearly` or `@annually` – Once a year at midnight on January 1st
+
+## Best Practices
+
+- Use `catchup=False` in your DAG definition if you do not want Airflow to run all missed intervals.
+- Ensure system time (or Airflow's time zone settings) align with your intended schedule.
+- Prefer preset cron strings (e.g., `@daily`) for simplicity unless you need fine-grained control.
+
+---
 
 
 ## Operators
