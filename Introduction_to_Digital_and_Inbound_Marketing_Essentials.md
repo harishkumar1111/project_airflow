@@ -231,19 +231,15 @@ Design a DAG that periodically fetches data from an external API, processes it, 
 - Archive raw API responses for debugging or audit purposes.
 - Use TaskFlow API for cleaner, function-based DAGs.
 
----
+# Resources
 
+## Official Documentation
+- [Apache Airflow Docs](https://airflow.apache.org/docs/)
 
-
-```
-
-## Resources
-
-- [Official Documentation](https://airflow.apache.org/docs/)
+## Video Tutorials
 - [YouTube Tutorial – Apache Airflow Full Course](https://www.youtube.com/watch?v=K9AnJ9_ZAXE)
 
-### Medium Articles
-
+## Medium Articles
 - [Data Pipeline using Apache Airflow to Import Data from Public API](https://medium.com/jakartasmartcity/data-pipeline-using-apache-airflow-to-import-data-from-public-api-7ff719118ac8)  
   *A practical guide on importing time-series data from a public API into a local database using Airflow.*
 
@@ -254,15 +250,4 @@ Design a DAG that periodically fetches data from an external API, processes it, 
   *A step-by-step guide to automating data pipelines using Airflow's core features.*
 
 - [Apache Airflow for Data Science — How to Work with REST APIs](https://medium.com/data-science/apache-airflow-for-data-science-how-to-work-with-rest-apis-8f4e20bee7d)  
-  *Insights on building data pipelines that connect to remote REST APIs using Airflow.*
-
-- [ETL Data Pipeline with Airflow and PostgreSQL](https://medium.com/@mohamed.h.eltedawy/etl-data-pipeline-with-airflow-and-postgresql-c9d40f8abf03)  
-  *A tutorial on creating an ETL pipeline that extracts data from an API and loads it into PostgreSQL.*
-
-- [Orchestrate Airflow Pipeline to Fetch Data from an API and Upload it to BigQuery](https://medium.com/merkle-data-technology/orchestrate-airflow-pipeline-to-fetch-data-from-an-api-and-upload-it-to-bigquery-f93990bad723)  
-  *A comprehensive guide on orchestrating an Airflow pipeline to fetch API data and upload it to BigQuery.*
-
-- [Building a Real-Time Data Pipeline with Apache Airflow, Kafka, Spark, and Cassandra](https://medium.com/@jushijun/building-a-real-time-data-pipeline-with-apache-airflow-kafka-spark-and-cassandra-be4ee5be8843)  
-  *An advanced tutorial on constructing a real-time data pipeline integrating multiple technologies.*
-
-
+  *Insights on using Airflow to interact with REST APIs in a data science context.*
