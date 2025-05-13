@@ -194,9 +194,10 @@ Airflow's modular architecture includes:
 - **Web Server**: UI for monitoring DAGs, inspecting logs, and managing tasks
 - **Metadata Database**: Stores DAG definitions, task states, and execution history
 
-![Airflow Architecture Diagram](https://airflow.apache.org/docs/apache-airflow/stable/_images/arch-diag-basic.png)
 
-## Use Cases for Apache Airflow
+
+## Use Cases for Apache Airflow<img width="348" alt="Capture" src="https://github.com/user-attachments/assets/738c44c6-5c26-467d-9b0f-a8304c7d92be" />
+
 
 1. **Data Pipelines**: Automate ETL processes across databases and cloud services (e.g., AWS S3, Snowflake)
 2. **Machine Learning**: Schedule model training, data validation, and deployment tasks
