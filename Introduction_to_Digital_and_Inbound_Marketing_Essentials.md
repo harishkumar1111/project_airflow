@@ -199,6 +199,16 @@ Airflow's modular architecture includes:
 ## Use Cases for Apache Airflow<img width="348" alt="Capture" src="https://github.com/user-attachments/assets/738c44c6-5c26-467d-9b0f-a8304c7d92be" />
 
 
+
+
+
+
+
+
+
+
+
+
 1. **Data Pipelines**: Automate ETL processes across databases and cloud services (e.g., AWS S3, Snowflake)
 2. **Machine Learning**: Schedule model training, data validation, and deployment tasks
 3. **DevOps Automation**: Run infrastructure checks, backups, and deployment scripts
